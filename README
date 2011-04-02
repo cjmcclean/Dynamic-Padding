@@ -1,0 +1,70 @@
+-----------------------
+Dynamic Padding
+-----------------------
+
+Version: 1.0
+Author: Chris McClean
+Homepage: https://github.com/Kenuzara/Dynamic-Padding
+
+Copyright 2011, Chris McClean
+Dual licensed under the MIT or GPL Version 2 licenses.
+ 
+    http://www.gnu.org/licenses/gpl.html  
+    http://opensource.org/licenses/mit-license.php
+
+
+Credits: Original script written by Les James @ http://www.lesjames.com
+ 
+
+
+-----------------------
+Description
+-----------------------
+
+This plugin dynamically adds padding (vertically or horizontally) to a ordered or 
+unordered lists children, or a <div> full of links, etc., such that these children
+elements fill up the parents container's width or height (respectively). There is 
+a remainder element that handles excess decimal-based padding. It does not need to
+be an extra element.
+
+
+-----------------------
+How to Use It
+-----------------------
+
+The plugin can be called like so:
+
+     $('#someListOfLinks').dynPadding();
+
+There are 3 options, and their defaults are:
+     
+     targets: '#nav a'
+     remainder: '#nav .remainder'
+     vertical: false
+
+The HTML for this would look like: 
+
+<div id="header">
+     <div id="nav">
+          <a href="#">Link 1</a>
+          <a href="#">Link 1</a>
+          <a href="#">Link 1</a>
+          <a href="#">Link 1</a>
+          <a href="#">Link 1</a>
+          <a href="#" class="remainder">Link 1</a>
+     </div>
+</div>
+
+The parent container must have a declared width or height (depending on whether 
+you're trying to build vertically or horizontally). A decent baseline CSS would 
+look like:
+
+#nav { display: block; width: 978px; height: auto; margin: 0; padding: 0; }
+     #nav a { display: block; float: left; width: auto; padding: 0; margin: 0; }
+
+Beautify as necessary.
+
+
+-----------------------
+
+See demo.html for live example.
