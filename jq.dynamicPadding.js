@@ -1,9 +1,9 @@
 /**
  * Dynamic Padding
- * @ver: 1.0
+ * @ver: 1.2
  * @author: Chris McClean
  * 
- * Copyright 2011, Chris McClean
+ * Copyright 2013, Chris McClean
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://www.gnu.org/licenses/gpl.html  |  http://opensource.org/licenses/mit-license.php
  * 
@@ -15,7 +15,7 @@
 		
 		var defaults = {
 			targets: '#nav a',
-			remainder: '#nav .remainder',
+			remainder: '',
 			vertical: false
 		};
 		var opts = $.extend(defaults, opts);
@@ -50,28 +50,47 @@
 			} else {
 				$(opts.targets).each(function() {
 					$(this).css({ 'padding-left': '0', 'padding-right': '0' });
-					unpadded += $(this).outerWidth();
-					link_size = $(this).width();
-					$(this).css({ width: link_size + 'px' });
+					unpadded += $(this).outerWidth(true);
+					
+					if ( $.browser.mozilla ) { 
+						link_size = $(this).width()+ 1;
+						$(this).css({ width: link_size + 'px' });
+					} else {
+						link_size = $(this).width();
+						$(this).css({ width: link_size + 'px' });
+					}
 				});
 			}
 			
 			// find raw padding and convert to whole number padding
 			var raw_padding = (parent_size - unpadded)/link_count;
 			var padding = Math.floor(raw_padding);
-		
-			// calculate remainder from decimal padding
-			remainder = Math.round((raw_padding - padding) * link_count);
 			
-			if (opts.vertical) {
-				// apply padding to links (if padding is a decimal apply floor to left and ceil to right)
-				$(opts.targets).css({ 'padding-top': Math.floor(padding/2), 'padding-bottom': Math.ceil(padding/2) });
-				// apply remainder
-				$(opts.remainder).css({ 'padding-top': Math.floor(remainder/2) + Math.floor(padding/2), 'padding-bottom': Math.ceil(remainder/2) + Math.ceil(padding/2) });
-			} else {
-				$(opts.targets).css({ 'padding-left': Math.floor(padding/2), 'padding-right': Math.ceil(padding/2) });
-				$(opts.remainder).css({ 'padding-left': Math.floor(remainder/2) + Math.floor(padding/2), 'padding-right': Math.ceil(remainder/2) + Math.ceil(padding/2) });
-			}
+			if (padding >= 34) { padding = 32; }
+		
+			if (opts.remainder.length > 0) {
+				// calculate remainder from decimal padding
+				remainder = Math.round((raw_padding - padding) * link_count);
+				
+				if (remainder >= 17) { remainder = 16; }
+				
+				if (opts.vertical) {
+					// apply padding to links (if padding is a decimal apply floor to left and ceil to right)
+					$(opts.targets).css({ 'padding-top': Math.floor(padding/2), 'padding-bottom': Math.floor(padding/2) });
+					// apply remainder
+					$(opts.remainder).css({ 'padding-top': Math.floor(remainder/2) + Math.floor(padding/2), 'padding-bottom': Math.floor(remainder/2) + Math.floor(padding/2) });
+				} else {
+					$(opts.targets).css({ 'padding-left': Math.floor(padding/2), 'padding-right': Math.floor(padding/2) });
+					$(opts.remainder).css({ 'padding-left': Math.floor(remainder/2) + Math.floor(padding/2), 'padding-right': Math.floor(remainder/2) + Math.floor(padding/2) });
+				}
+			} else {  
+				if (opts.vertical) {
+					// apply padding to links (if padding is a decimal apply floor to left and ceil to right)
+					$(opts.targets).css({ 'padding-top': Math.floor(padding/2), 'padding-bottom': Math.floor(padding/2) });
+				} else {
+					$(opts.targets).css({ 'padding-left': Math.floor(padding/2), 'padding-right': Math.floor(padding/2) });
+				}
+			}			
 					
 		});
 			

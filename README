@@ -2,11 +2,11 @@
 Dynamic Padding
 -----------------------
 
-Version: 1.0
+Version: 1.2
 Author: Chris McClean
 Homepage: https://github.com/Kenuzara/Dynamic-Padding
 
-Copyright 2011, Chris McClean
+Copyright 2013, Chris McClean
 Dual licensed under the MIT or GPL Version 2 licenses.
  
     http://www.gnu.org/licenses/gpl.html  
@@ -68,3 +68,12 @@ Beautify as necessary.
 -----------------------
 
 See demo.html for live example.
+
+
+-----------------------
+Change Log
+-----------------------
+v1.2 - Add fix for Mozilla browser
+     - Change padding function to create unified padding output.
+v1.1 - Add demo and clean up function
+v1.0 - Wrap original creators function in a jQuery plugin
