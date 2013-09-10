@@ -2,11 +2,11 @@
 Dynamic Padding
 -----------------------
 
-Version: 1.2
+Version: 2.0
 Author: Chris McClean
 Homepage: https://github.com/Kenuzara/Dynamic-Padding
 
-Copyright 2013, Chris McClean
+Copyright September 2013, Chris McClean
 Dual licensed under the MIT or GPL Version 2 licenses.
  
     http://www.gnu.org/licenses/gpl.html  
@@ -34,25 +34,26 @@ How to Use It
 
 The plugin can be called like so:
 
-     $('#someListOfLinks').dynPadding();
+     $('#someListOfLinks').dynPadding('init', {});
 
-There are 3 options, and their defaults are:
+There are 4 options, and their defaults are:
      
-     targets: '#nav a'
-     remainder: '#nav .remainder'
-     vertical: false
+     targets: '#nav a',
+     remainder: null,
+     vertical: false,
+	 paddingBoundary: 34
 
 The HTML for this would look like: 
 
 <div id="header">
-     <div id="nav">
-          <a href="#">Link 1</a>
-          <a href="#">Link 1</a>
-          <a href="#">Link 1</a>
-          <a href="#">Link 1</a>
-          <a href="#">Link 1</a>
-          <a href="#" class="remainder">Link 1</a>
-     </div>
+     <ul id="nav">
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#" class="remainder">Link 1</a></li>
+     </ul>
 </div>
 
 The parent container must have a declared width or height (depending on whether 
@@ -73,6 +74,8 @@ See demo.html for live example.
 -----------------------
 Change Log
 -----------------------
+v2.0 - Update plugin to include methods (init, destroy) to add more consistent functionality in RWD. 
+     - Add in variable to control upper limit of padding.
 v1.2 - Add fix for Mozilla browser
      - Change padding function to create unified padding output.
 v1.1 - Add demo and clean up function
