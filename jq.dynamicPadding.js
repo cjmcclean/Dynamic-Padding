@@ -1,6 +1,6 @@
 /**
  * Dynamic Padding
- * @ver: 2.0
+ * @ver: 2.1
  * @author: Chris McClean
  * 
  * Copyright September 2013, Chris McClean
@@ -20,10 +20,10 @@
             return this.each(function () {
 
                 // Create a jQuery object to use with this individual element
-                var parent = $(this);
+                var $parent = $(this);
 
                 // Attempt to grab saved settings, if they don't exist we'll get "undefined".
-                var settings = $(parent).data('dynPadding');
+                var settings = $parent.data('dynPadding');
 
                 // If we could't grab settings, create them from defaults and passed options
                 if (typeof (settings) == 'undefined') {
@@ -38,7 +38,7 @@
                     settings = $.extend(defaults, opts);
 
                     // Save our newly created settings
-                    $(parent).data('dynPadding', settings);
+                    $parent.data('dynPadding', settings);
 
                 } else {
 
@@ -46,7 +46,7 @@
                     settings = $.extend({}, settings, opts);
 
                     // If you wish to save options passed each time, add:
-                    // $(parent).data('dynPadding', settings);
+                    // $parent.data('dynPadding', settings);
 
                 }
 
@@ -56,12 +56,12 @@
                     link_count  = $(opts.targets).length;
 
                 if (opts.vertical) {
-                    parent_size = parent.height();
+                    parent_size = $parent.height();
                 } else {
-                    parent_size = parent.width();
+                    parent_size = $parent.width();
                 }
 
-                $(parent).addClass('dynPadding_parent');
+                $parent.addClass('dynPadding_parent');
 
                 // find unpadded size of links and reset link size to whole numbers
                 if (opts.vertical) {
@@ -71,7 +71,7 @@
                         $(this).css({ 'padding-top': '0', 'padding-bottom': '0' });
 
                         // measure element size with borders
-                        unpadded += $(this).outerHeight();
+                        unpadded += $(this).height();
 
                         // set element size to erase decimal sizing
                         link_size = $(this).height();
@@ -82,7 +82,7 @@
 
                     $(opts.targets).each(function () {
                         $(this).css({ 'padding-left': '0', 'padding-right': '0' });
-                        unpadded += $(this).outerWidth(true);
+                        unpadded += $(this).width();
                         link_size = $(this).width() + 1;
                         $(this).css({ width: link_size + 'px' });
                     });
@@ -163,10 +163,20 @@
 
                 }
                 
-                $(parent).removeClass('dynPadding_parent').removeData('dynPadding');
+                $(this).removeClass('dynPadding_parent').removeData('dynPadding');
 
             });
 
+        },
+        resize: function (opts) {
+        	
+        	// Repeat over each element in selector
+        	return this.each(function () {
+        	
+        		  	
+        	
+        	});
+        
         }
     };
 	

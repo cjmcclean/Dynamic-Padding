@@ -2,7 +2,7 @@
 Dynamic Padding
 -----------------------
 
-Version: 2.0
+Version: 2.1
 Author: Chris McClean
 Homepage: https://github.com/Kenuzara/Dynamic-Padding
 
@@ -74,6 +74,7 @@ See demo.html for live example.
 -----------------------
 Change Log
 -----------------------
+v2.1 - Correct width calculations to no longer add padding to width on resize. Correct call to parent to add/remove dynPadding_parent class.
 v2.0 - Update plugin to include methods (init, destroy) to add more consistent functionality in RWD. 
      - Add in variable to control upper limit of padding.
 v1.2 - Add fix for Mozilla browser
